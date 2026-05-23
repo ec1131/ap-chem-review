@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Chemistry Summer Review &mdash; Mrs. Pitts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0c1117; --surface:#131920; --surface2:#1a2330;
+  --border:rgba(255,255,255,0.07);
+  --accent:#4de8c2; --accent2:#f7c948; --accent3:#e25c7a;
+  --text:#e8f0ec; --muted:#7a9090;
+  --hf:'Playfair Display',Georgia,serif;
+  --bf:'DM Sans',sans-serif;
+  --mf:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--bf);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+
+/* PROGRESS */
+#rp{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:9999;transition:width .1s;box-shadow:0 0 8px var(--accent)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 24px;overflow:hidden}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(77,232,194,.08) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(247,201,72,.06) 0%,transparent 60%),var(--bg)}
+.mol{position:absolute;border-radius:50%;border:1px solid rgba(77,232,194,.15);animation:fmol linear infinite;pointer-events:none}
+@keyframes fmol{0%{transform:translateY(110vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-20vh) rotate(360deg);opacity:0}}
+.hc{position:relative;z-index:1;max-width:780px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(77,232,194,.1);border:1px solid rgba(77,232,194,.25);border-radius:100px;padding:6px 18px;font-size:.78rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+.hero h1{font-family:var(--hf);font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;line-height:1.05;margin-bottom:24px;letter-spacing:-1px}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hsub{font-size:1.1rem;color:var(--muted);max-width:540px;margin:0 auto 40px;font-weight:300}
+.hmeta{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:48px}
+.hmi{display:flex;flex-direction:column;align-items:center;gap:4px}
+.hmi .lb{font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted)}
+.hmi .vl{font-family:var(--hf);font-size:1.6rem;color:var(--accent)}
+.hdiv{width:1px;height:40px;background:var(--border);align-self:center}
+.scue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:.75rem;letter-spacing:1px;text-transform:uppercase;animation:fbob 2s ease-in-out infinite}
+@keyframes fbob{0%,100%{opacity:.4;transform:translateX(-50%) translateY(0)}50%{opacity:.8;transform:translateX(-50%) translateY(6px)}}
+.scue svg{width:18px;opacity:.5}
+
+/* REF STRIP */
+.rstrip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 24px;overflow-x:auto}
+.rsi{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.rlb{font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);white-space:nowrap}
+.rchip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:.82rem;font-weight:500;color:var(--accent);text-decoration:none;transition:all .2s;white-space:nowrap}
+.rchip:hover{background:rgba(77,232,194,.1);border-color:rgba(77,232,194,.3);transform:translateY(-1px)}
+
+/* NAV */
+.snav{position:sticky;top:0;z-index:100;background:rgba(12,17,23,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;overflow-x:auto}
+.ni{max-width:1000px;margin:0 auto;display:flex;gap:0;align-items:center}
+.nlogo{font-family:var(--hf);font-size:.95rem;color:var(--accent);white-space:nowrap;padding:14px 20px 14px 0;border-right:1px solid var(--border);margin-right:8px;flex-shrink:0}
+.nl{display:inline-block;padding:14px 12px;font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s}
+.nl:hover,.nl.active{color:var(--text);border-bottom-color:var(--accent)}
+
+/* MAIN */
+main{max-width:960px;margin:0 auto;padding:0 24px 80px}
+
+/* SECTION */
+.ts{margin-top:80px;scroll-margin-top:60px;opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.ts.visible{opacity:1;transform:none}
+.sh{display:flex;align-items:flex-start;gap:20px;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.sn{font-family:var(--mf);font-size:.75rem;color:var(--accent);background:rgba(77,232,194,.1);border:1px solid rgba(77,232,194,.2);border-radius:6px;padding:4px 10px;flex-shrink:0;margin-top:8px}
+.stitle{font-family:var(--hf);font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;line-height:1.2}
+
+/* VIDEO */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+.vcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .25s}
+.vcard:hover{border-color:rgba(77,232,194,.25);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.vlabel{padding:10px 14px 8px;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);border-bottom:1px solid var(--border)}
+.vembed{position:relative;padding-bottom:56.25%;height:0}
+.vembed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:28px}
+.lcard{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;text-decoration:none;color:var(--text);transition:all .2s;font-size:.88rem;font-weight:500}
+.lcard:hover{background:var(--surface2);border-color:rgba(77,232,194,.3);transform:translateX(4px)}
+.licon{width:34px;height:34px;border-radius:8px;background:rgba(247,201,72,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+
+/* PRACTICE BLOCK */
+.pb{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px}
+.pbh{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--surface2);cursor:pointer;user-select:none;transition:background .2s;gap:12px}
+.pbh:hover{background:rgba(77,232,194,.06)}
+.pbhl{display:flex;align-items:center;gap:12px}
+.ptag{font-size:.68rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:100px;flex-shrink:0}
+.tp{background:rgba(77,232,194,.12);color:var(--accent);border:1px solid rgba(77,232,194,.2)}
+.tc{background:rgba(247,201,72,.12);color:var(--accent2);border:1px solid rgba(247,201,72,.2)}
+.tk{background:rgba(226,92,122,.12);color:var(--accent3);border:1px solid rgba(226,92,122,.2)}
+.ptitle{font-size:.9rem;font-weight:600;color:var(--text)}
+.pchev{width:20px;height:20px;color:var(--muted);transition:transform .3s;flex-shrink:0}
+.pbh[aria-expanded="true"] .pchev{transform:rotate(180deg)}
+.pbd{padding:20px 22px;border-top:1px solid var(--border);display:none}
+.pbd.open{display:block}
+.pbd p,.pbd li{font-size:.92rem;color:#c8dada;line-height:1.75}
+.pbd ol,.pbd ul{padding-left:20px;display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.note{display:flex;gap:10px;background:rgba(247,201,72,.07);border-left:3px solid var(--accent2);border-radius:0 8px 8px 0;padding:12px 14px;margin-top:14px;font-size:.85rem;color:#d4c078}
+code{font-family:var(--mf);background:rgba(77,232,194,.08);color:var(--accent);padding:2px 7px;border-radius:5px;font-size:.88em}
+
+/* QUIZ */
+.quiz-block{background:var(--surface);border:1px solid rgba(77,232,194,.2);border-radius:16px;padding:0;margin-bottom:16px;overflow:hidden}
+.quiz-header{padding:14px 20px;background:rgba(77,232,194,.06);border-bottom:1px solid rgba(77,232,194,.12);display:flex;align-items:center;gap:10px}
+.quiz-label{font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);background:rgba(77,232,194,.15);border:1px solid rgba(77,232,194,.25);border-radius:100px;padding:3px 10px}
+.quiz-title{font-size:.88rem;font-weight:600;color:#a8d8c0}
+.quiz-body{padding:20px 22px}
+.qitem{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.qitem:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.qtext{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:14px;line-height:1.5}
+.qnum{display:inline-block;font-family:var(--mf);font-size:.72rem;color:var(--accent);background:rgba(77,232,194,.12);border-radius:4px;padding:1px 7px;margin-right:6px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:540px){.choices{grid-template-columns:1fr}}
+.choice{background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;cursor:pointer;text-align:left;color:var(--text);font-family:var(--bf);font-size:.88rem;font-weight:500;transition:all .2s;line-height:1.4}
+.choice:hover:not(:disabled){background:rgba(77,232,194,.1);border-color:rgba(77,232,194,.4);transform:translateY(-1px)}
+.choice:disabled{cursor:default}
+.choice.correct{background:rgba(77,232,194,.15);border-color:var(--accent);color:#b2f5e3}
+.choice.wrong{background:rgba(226,92,122,.15);border-color:var(--accent3);color:#ffc0cb}
+.choice.reveal{background:rgba(77,232,194,.08);border-color:rgba(77,232,194,.3);color:#b2f5e3}
+.qfeedback{margin-top:10px;padding:10px 14px;border-radius:10px;font-size:.85rem;font-weight:600;display:none;line-height:1.5}
+.qfeedback.show{display:block}
+.qfeedback.right{background:rgba(77,232,194,.12);border:1px solid rgba(77,232,194,.25);color:#9eecd6}
+.qfeedback.wrong{background:rgba(226,92,122,.12);border:1px solid rgba(226,92,122,.25);color:#f5a8b5}
+.qscore{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:.82rem;color:var(--muted);font-weight:600}
+.qscore span{color:var(--accent)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;color:var(--muted);font-size:.82rem}
+footer strong{color:var(--accent)}
+
+@media(max-width:600px){
+  .hero h1{font-size:2.4rem}.hmeta{gap:16px}.hdiv{display:none}
+  .sh{flex-direction:column;gap:10px}.vgrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="rp"></div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hbg"></div>
+  <div class="mol" style="width:80px;height:80px;left:8%;animation-duration:18s"></div>
+  <div class="mol" style="width:40px;height:40px;left:25%;animation-duration:22s;animation-delay:4s"></div>
+  <div class="mol" style="width:120px;height:120px;left:70%;animation-duration:26s;animation-delay:1s;opacity:.5"></div>
+  <div class="mol" style="width:30px;height:30px;left:50%;animation-duration:15s;animation-delay:2s;border-color:rgba(247,201,72,.2)"></div>
+  <div class="hc">
+    <h1>AP Chemistry<br><em>Summer Review</em></h1>
+    <p class="hsub">Nine topics, embedded videos, and interactive practice questions. Work through each section before school starts.</p>
+    <div class="hmeta">
+      <div class="hmi"><span class="lb">Topics</span><span class="vl">9</span></div>
+      <div class="hdiv"></div>
+      <div class="hmi"><span class="lb">Instructor</span><span class="vl" style="font-size:1.1rem;margin-top:4px">Mrs. Pitts</span></div>
+      <div class="hdiv"></div>
+      <div class="hmi"><span class="lb">Required?</span><span class="vl" style="font-size:.95rem;margin-top:6px;color:var(--accent2)">Optional &mdash; Encouraged</span></div>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);font-style:italic">Congratulations on deciding to take AP Chemistry! I&rsquo;m excited to have you in class next year.</p>
+  </div>
+  <div class="scue">
+    <span>Scroll to begin</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- REF STRIP -->
+<div class="rstrip">
+  <div class="rsi">
+    <span class="rlb">&#128206; Key References</span>
+    <a class="rchip" href="https://tinyurl.com/mvfvdduw" target="_blank">&#128196; AP Chem Periodic Table</a>
+    <a class="rchip" href="https://tinyurl.com/583ts6py" target="_blank">&#128196; AP Chem Formula Sheet</a>
+    <a class="rchip" href="https://tinyurl.com/mrybsf6r" target="_blank">&#128250; Ions Quizlet</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="snav">
+  <div class="ni">
+    <div class="nlogo">&#9879; AP Chem</div>
+    <a class="nl" href="#s1">Sig Figs</a>
+    <a class="nl" href="#s2">Metric</a>
+    <a class="nl" href="#s3">Matter</a>
+    <a class="nl" href="#s4">Atomic</a>
+    <a class="nl" href="#s5">Periodic</a>
+    <a class="nl" href="#s6">Nomenclature</a>
+    <a class="nl" href="#s7">Bonding</a>
+    <a class="nl" href="#s8">Reactions</a>
+    <a class="nl" href="#s9">Stoichiometry</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════════
+     S1 — SIG FIGS
+═══════════════════════════════════════ -->
+<section class="ts" id="s1">
+  <div class="sh"><span class="sn">01</span><h2 class="stitle">Significant Figures &amp; Measurement</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; How to Make Accurate Measurements</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/sObrGonT71k" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Rules for Significant Figures</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/eCJ76hz7jPM" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Calculations with Significant Figures</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/BNAwalzi6d8" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your sig figs knowledge</span></div>
+    <div class="quiz-body" id="q1"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S2 — METRIC
+═══════════════════════════════════════ -->
+<section class="ts" id="s2">
+  <div class="sh"><span class="sn">02</span><h2 class="stitle">Metric Conversions &amp; Dimensional Analysis</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; Dimensional Analysis</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/d_WfCwJW0Og" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; SI Units &amp; Metric Prefixes</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/_GB7IhyQt9A" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your unit conversion skills</span></div>
+    <div class="quiz-body" id="q2"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S3 — MATTER
+═══════════════════════════════════════ -->
+<section class="ts" id="s3">
+  <div class="sh"><span class="sn">03</span><h2 class="stitle">Classification of Matter, Properties &amp; Change</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; Classification of Matter</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/OHhnm2p5G3o" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Physical vs. Chemical Changes</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/wL6_cFOIM8Y" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your classification knowledge</span></div>
+    <div class="quiz-body" id="q3"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S4 — ATOMIC STRUCTURE
+═══════════════════════════════════════ -->
+<section class="ts" id="s4">
+  <div class="sh"><span class="sn">04</span><h2 class="stitle">Atomic Structure &amp; History</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; History of the Atom</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/xazQRcSCRaY" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Electron Configurations</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/RJlEH5Jz80w" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your atomic structure knowledge</span></div>
+    <div class="quiz-body" id="q4"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S5 — PERIODIC TRENDS
+═══════════════════════════════════════ -->
+<section class="ts" id="s5">
+  <div class="sh"><span class="sn">05</span><h2 class="stitle">Periodic Table &mdash; Structure &amp; Trends</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; Periodic Trends</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/7cEtOHLZQ2A" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Organization of the Periodic Table</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/PIFPLjGOaH8" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your periodic trends knowledge</span></div>
+    <div class="quiz-body" id="q5"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S6 — NOMENCLATURE
+═══════════════════════════════════════ -->
+<section class="ts" id="s6">
+  <div class="sh"><span class="sn">06</span><h2 class="stitle">Nomenclature</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; Naming Ionic Compounds</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/TQKIbJIqLeA" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Naming Covalent Compounds</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/DejkvR4pvRw" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Naming Acids</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/5Jb2u9ihfm4" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your nomenclature knowledge</span></div>
+    <div class="quiz-body" id="q6"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S7 — BONDING
+═══════════════════════════════════════ -->
+<section class="ts" id="s7">
+  <div class="sh"><span class="sn">07</span><h2 class="stitle">Chemical Bonding &amp; Intermolecular Forces</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; Ionic vs. Covalent Bonding</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/S_k0kr2eZSQ" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Intermolecular Forces</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/oXzmCC64974" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your bonding knowledge</span></div>
+    <div class="quiz-body" id="q7"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S8 — REACTIONS
+═══════════════════════════════════════ -->
+<section class="ts" id="s8">
+  <div class="sh"><span class="sn">08</span><h2 class="stitle">Chemical Reactions</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; Types of Chemical Reactions</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/Pv7JkI8d1Ng" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Balancing Chemical Equations</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/e_C-V5vJv80" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your reactions knowledge</span></div>
+    <div class="quiz-body" id="q8"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S9 — STOICHIOMETRY
+═══════════════════════════════════════ -->
+<section class="ts" id="s9">
+  <div class="sh"><span class="sn">09</span><h2 class="stitle">Mole Conversions &amp; Stoichiometry</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; Molar Mass &amp; Mole Conversions</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/TFbGLEZ4qt0" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Stoichiometry</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/UL1jmJaUkaQ" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <div class="vcard">
+      <div class="vlabel">&#127909; Limiting Reactants &amp; Percent Yield</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/IWtkhAv4RTo" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your stoichiometry knowledge</span></div>
+    <div class="quiz-body" id="q9"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>&#9879; <strong>EHS AP Chemistry</strong> &middot; Mrs. Pitts &middot; 2024&ndash;2025</p>
+  <p style="margin-top:8px;color:#4a6060">This review is optional but highly encouraged. Good luck &mdash; see you in the fall!</p>
+</footer>
+
+<script>
+// ─────────────────────────────────────────
+// QUESTION DATA
+// ─────────────────────────────────────────
+const QUIZZES = {
+  q1:[
+    {q:"How many significant figures are in 0.00420 mg?",cs:["2","3","4","5"],a:1,e:"0.00420 has 3 sig figs. Leading zeros are not significant; the trailing zero after 2 IS significant."},
+    {q:"Round 130,210 m to 3 significant figures.",cs:["130,000 m","130,200 m","1.30 × 10⁵ m","131,000 m"],a:2,e:"1.30 × 10⁵ keeps exactly 3 sig figs. 130,000 is ambiguous, so scientific notation is clearest."},
+    {q:"How many sig figs are in 1,000. m (with decimal point)?",cs:["1","2","3","4"],a:3,e:"The written decimal point indicates all four digits are significant: 1, 0, 0, 0."},
+    {q:"Calculate 97.34 mL − 34.1 mL with correct sig figs.",cs:["63.24 mL","63.2 mL","63 mL","63.240 mL"],a:1,e:"Subtraction uses decimal places: 34.1 has 1 decimal place, so the answer rounds to 1 decimal place → 63.2 mL."},
+    {q:"Calculate 4008 ÷ 2.763 with correct sig figs.",cs:["1451","1451.0","1450","1.45 × 10³"],a:3,e:"Division uses least sig figs: 2.763 has 4, 4008 has 4 → 4 sig figs → 1451. Both A and D are correct; scientific notation is unambiguous."}
+  ],
+  q2:[
+    {q:"How many milliliters are in 1 liter?",cs:["10 mL","100 mL","1,000 mL","10,000 mL"],a:2,e:"The prefix milli- means 10⁻³, so 1 L = 1,000 mL."},
+    {q:"Convert 250 mL to microliters (μL).",cs:["0.250 μL","2,500 μL","25,000 μL","250,000 μL"],a:3,e:"1 mL = 1,000 μL → 250 mL × 1,000 = 250,000 μL."},
+    {q:"Which prefix means 10⁻⁹?",cs:["micro (μ)","milli (m)","nano (n)","pico (p)"],a:2,e:"nano = 10⁻⁹. micro = 10⁻⁶, milli = 10⁻³, pico = 10⁻¹²."},
+    {q:"In dimensional analysis, conversion factors must equal exactly:",cs:["1 gram","0","1 (unity)","the answer"],a:2,e:"Every conversion factor equals 1 (e.g., 100 cm / 1 m = 1). This lets you multiply without changing the value."},
+    {q:"An acceleration of 9.52 m/s². Which setup correctly starts a conversion to km/min²?",cs:["× (1 km / 1000 m)","× (1000 m / 1 km)","× (1 m / 1000 km)","× (60 s / 1 min)"],a:0,e:"To convert meters → km, multiply by (1 km / 1000 m). You'd then also need to convert s² → min² separately."}
+  ],
+  q3:[
+    {q:"Italian salad dressing is best classified as:",cs:["Element","Compound","Solution (homogeneous mixture)","Heterogeneous mixture"],a:3,e:"You can see the separate layers/components in salad dressing → heterogeneous mixture."},
+    {q:"Which of the following is a compound?",cs:["Copper wire","Carbon dioxide","Salt water","Argon gas"],a:1,e:"CO₂ is made of two different elements chemically bonded together → compound. Copper and argon are elements; salt water is a mixture."},
+    {q:"Iron rusting is a:",cs:["Physical change","Chemical change","Physical property","Chemical property"],a:1,e:"Rusting forms a new substance (iron oxide) through a chemical reaction → chemical change."},
+    {q:"Density is a:",cs:["Chemical property","Chemical change","Physical property","Physical change"],a:2,e:"Density (mass/volume) can be measured without changing the chemical identity of a substance → physical property."},
+    {q:"Which is a chemical property?",cs:["Melting point","Solubility","Flammability","Density"],a:2,e:"Flammability describes how a substance reacts (burns) with oxygen → chemical property. The others can be observed without a chemical reaction."}
+  ],
+  q4:[
+    {q:"An atom has 17 protons, 18 neutrons, and 18 electrons. Its charge is:",cs:["+1","0","−1","+2"],a:2,e:"17 protons (+) and 18 electrons (−) → net charge = −1. This is Cl⁻."},
+    {q:"The element ¹¹²Cd has how many neutrons?",cs:["48","64","112","50"],a:1,e:"Mass number (112) − atomic number (48 for Cd) = 64 neutrons."},
+    {q:"The electron configuration [Ne] 3s² 3p⁴ belongs to which element?",cs:["Si","P","S","Cl"],a:2,e:"[Ne]=10e⁻, + 3s²(2) + 3p⁴(4) = 16 total → Sulfur (S, atomic number 16)."},
+    {q:"Which model of the atom is considered most accurate today?",cs:["Dalton's solid sphere","Thomson's plum pudding","Bohr's planetary model","Electron cloud (quantum) model"],a:3,e:"The quantum mechanical model (electron cloud) is most accurate — it describes electrons as probability distributions, not fixed orbits."},
+    {q:"The ion ²⁶Mg²⁺ has how many electrons?",cs:["26","14","12","10"],a:3,e:"Mg has 12 electrons. A 2+ charge means it lost 2 electrons → 12 − 2 = 10 electrons."}
+  ],
+  q5:[
+    {q:"As you move left to right across a period, atomic radius generally:",cs:["Increases","Decreases","Stays the same","First increases then decreases"],a:1,e:"More protons pull electrons closer to the nucleus → radius decreases across a period."},
+    {q:"Which element has the highest electronegativity?",cs:["Oxygen","Nitrogen","Chlorine","Fluorine"],a:3,e:"Fluorine (F) has the highest electronegativity of all elements (3.98 on Pauling scale)."},
+    {q:"Which trend correctly describes ionization energy going DOWN a group?",cs:["Increases","Decreases","Stays the same","Alternates"],a:1,e:"Going down a group, electrons are farther from the nucleus and more shielded → easier to remove → lower ionization energy."},
+    {q:"Group 1 metals (alkali metals) are the most reactive metals because they:",cs:["Have 2 valence electrons","Have 1 valence electron that is easily lost","Have full outer shells","Are transition metals"],a:1,e:"One valence electron far from the nucleus is easily lost, making alkali metals highly reactive."},
+    {q:"Rank these elements by INCREASING atomic radius: C, Al, O, K",cs:["O < C < Al < K","K < Al < C < O","C < O < Al < K","O < Al < C < K"],a:0,e:"O < C (same period, O has more protons) < Al (next period down) < K (two periods down, much larger)."}
+  ],
+  q6:[
+    {q:"What is the correct name for MnCl₂?",cs:["Manganese chloride","Manganese(II) chloride","Manganese(IV) chloride","Dimanganese chloride"],a:1,e:"Mn can have multiple oxidation states. Cl⁻ = −1, and two Cl = −2 total, so Mn = +2 → Manganese(II) chloride."},
+    {q:"What is the formula for Lead(IV) hydroxide?",cs:["PbOH","Pb(OH)₂","Pb(OH)₄","PbOH₄"],a:2,e:"Lead(IV) = Pb⁴⁺. Hydroxide = OH⁻. Need 4 OH⁻ to balance Pb⁴⁺ → Pb(OH)₄."},
+    {q:"What is the correct name for N₂O₅?",cs:["Nitrogen oxide","Nitrogen pentoxide","Dinitrogen pentoxide","Dinitrogen oxide"],a:2,e:"Covalent compounds use Greek prefixes. di- for 2 N, pent- for 5 O, -oxide → dinitrogen pentoxide."},
+    {q:"What is the name of HNO₃?",cs:["Nitrous acid","Hydrogen nitrate","Nitric acid","Hydronitric acid"],a:2,e:"HNO₃ is a strong acid named nitric acid. HNO₂ would be nitrous acid."},
+    {q:"What is the formula for carbonic acid?",cs:["HCO₃","H₂CO₃","H₂CO","HC₂O₃"],a:1,e:"Carbonic acid = H₂CO₃. The carbonate ion is CO₃²⁻; adding 2 H⁺ gives H₂CO₃."}
+  ],
+  q7:[
+    {q:"What type of bond forms between calcium and chlorine?",cs:["Metallic bond","Nonpolar covalent","Polar covalent","Ionic bond"],a:3,e:"Ca is a metal and Cl is a nonmetal with large electronegativity difference → ionic bond (electron transfer)."},
+    {q:"What type of bond forms between chlorine and bromine (Cl₂ and Br₂ are similar)?",cs:["Ionic","Polar covalent","Nonpolar covalent","Metallic"],a:2,e:"Two nonmetals with the same electronegativity → nonpolar covalent bond (electrons shared equally)."},
+    {q:"What is the strongest intermolecular force in water (H₂O)?",cs:["London dispersion","Dipole-dipole","Hydrogen bonding","Ionic bonding"],a:2,e:"Water has O–H bonds and lone pairs → qualifies for hydrogen bonding, the strongest IMF listed (not a true bond)."},
+    {q:"What is the strongest IMF in methane (CH₄)?",cs:["Hydrogen bonding","Dipole-dipole","London dispersion forces","Covalent bonding"],a:2,e:"CH₄ is nonpolar and has no O/N/F–H bonds → only London dispersion forces (temporary induced dipoles)."},
+    {q:"MgBr₂ is best described as having which type of bonding?",cs:["Nonpolar covalent","Polar covalent","Ionic","Metallic"],a:2,e:"Mg is a metal (+2) and Br is a nonmetal (−1). The large electronegativity difference → ionic bond."}
+  ],
+  q8:[
+    {q:"What type of reaction is: CaCO₃ → CaO + CO₂?",cs:["Synthesis","Decomposition","Single replacement","Combustion"],a:1,e:"One compound breaks into two simpler substances → decomposition reaction."},
+    {q:"What type of reaction is: 2Na + Cl₂ → 2NaCl?",cs:["Decomposition","Double replacement","Synthesis","Single replacement"],a:2,e:"Two elements combine to form one compound → synthesis (combination) reaction."},
+    {q:"What type of reaction is: 2NaBr + Cl₂ → 2NaCl + Br₂?",cs:["Synthesis","Decomposition","Single replacement","Double replacement"],a:2,e:"Cl replaces Br in the compound. One element displaces another → single replacement."},
+    {q:"Balance: __ Fe + __ P₄ → __ Fe₃P₂. What are the correct coefficients?",cs:["3, 1, 2","6, 1, 2","3, 2, 1","6, 2, 3"],a:1,e:"Need 3 Fe per Fe₃P₂. P₄ has 4 P atoms; Fe₃P₂ has 2 P. Need 2 Fe₃P₂ to use 4 P → 2 Fe₃P₂ needs 6 Fe. Coefficients: 6 Fe + 1 P₄ → 2 Fe₃P₂."},
+    {q:"A combustion reaction always produces:",cs:["NaCl and H₂O","CO₂ and H₂O (for hydrocarbons)","Only CO₂","Only H₂O"],a:1,e:"Complete combustion of hydrocarbons (CₓHᵧ) always produces CO₂ + H₂O when oxygen is the oxidizer."}
+  ],
+  q9:[
+    {q:"What is the molar mass of Ca(OH)₂?",cs:["57 g/mol","74 g/mol","56 g/mol","58 g/mol"],a:1,e:"Ca(40) + 2×O(16) + 2×H(1) = 40 + 32 + 2 = 74 g/mol."},
+    {q:"How many moles are in 452 g of argon? (Ar = 39.95 g/mol)",cs:["11.3 mol","452 mol","0.0884 mol","904 mol"],a:0,e:"moles = mass ÷ molar mass = 452 g ÷ 39.95 g/mol = 11.3 mol."},
+    {q:"Given 2C₂H₂ + 5O₂ → 4CO₂ + 2H₂O, what is the mole ratio of O₂ to CO₂?",cs:["2:5","5:4","4:5","1:1"],a:1,e:"From the balanced equation: 5 mol O₂ produces 4 mol CO₂ → ratio is 5:4."},
+    {q:"Given 2BF₃ + 3H₂ → 2B + 6HF, if 0.10 mol BF₃ and 0.25 mol H₂ react, the limiting reactant is:",cs:["BF₃","H₂","B","HF"],a:0,e:"0.10 mol BF₃ needs 0.15 mol H₂ (ratio 2:3). You have 0.25 mol H₂ — more than enough. BF₃ runs out first → limiting reactant."},
+    {q:"Percent yield is calculated as:",cs:["(theoretical ÷ actual) × 100","(actual ÷ theoretical) × 100","(actual − theoretical) × 100","(theoretical − actual) × 100"],a:1,e:"% yield = (actual yield ÷ theoretical yield) × 100. It tells you how efficient the reaction was."}
+  ]
+};
+
+// ─────────────────────────────────────────
+// RENDER QUIZZES
+// ─────────────────────────────────────────
+function renderQuizzes(){
+  Object.keys(QUIZZES).forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const qs=QUIZZES[id];
+    let html='';
+    qs.forEach((q,qi)=>{
+      html+=`<div class="qitem" id="${id}_q${qi}">
+        <div class="qtext"><span class="qnum">Q${qi+1}</span>${q.q}</div>
+        <div class="choices">`;
+      q.cs.forEach((c,ci)=>{
+        html+=`<button class="choice" onclick="answer('${id}',${qi},${ci})">${['A','B','C','D'][ci]}. ${c}</button>`;
+      });
+      html+=`</div><div class="qfeedback" id="${id}_f${qi}"></div></div>`;
+    });
+    html+=`<div class="qscore">Score: <span id="${id}_score">0</span> / ${qs.length}</div>`;
+    el.innerHTML=html;
+  });
+}
+
+// ─────────────────────────────────────────
+// HANDLE ANSWER
+// ─────────────────────────────────────────
+const scores={};
+function answer(qid,qi,chosen){
+  const q=QUIZZES[qid][qi];
+  const item=document.getElementById(`${qid}_q${qi}`);
+  const btns=item.querySelectorAll('.choice');
+  btns.forEach(b=>b.disabled=true);
+  btns[q.a].classList.add(chosen===q.a?'correct':'reveal');
+  if(chosen!==q.a) btns[chosen].classList.add('wrong');
+  const fb=document.getElementById(`${qid}_f${qi}`);
+  const right=chosen===q.a;
+  fb.className=`qfeedback show ${right?'right':'wrong'}`;
+  fb.innerHTML=`${right?'&#10003; Correct!':'&#10007; Not quite.'} ${q.e}`;
+  if(!scores[qid]) scores[qid]=0;
+  if(right) scores[qid]++;
+  document.getElementById(`${qid}_score`).textContent=scores[qid];
+}
+
+// ─────────────────────────────────────────
+// PRACTICE TOGGLE
+// ─────────────────────────────────────────
+function tog(h){
+  const b=h.nextElementSibling;
+  const open=b.classList.toggle('open');
+  h.setAttribute('aria-expanded',String(open));
+}
+
+// ─────────────────────────────────────────
+// PROGRESS BAR
+// ─────────────────────────────────────────
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  document.getElementById('rp').style.width=
+    ((window.scrollY/(d.scrollHeight-d.clientHeight))*100)+'%';
+});
+
+// ─────────────────────────────────────────
+// SCROLL REVEAL
+// ─────────────────────────────────────────
+const obs=new IntersectionObserver(entries=>
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),
+  {threshold:.06});
+document.querySelectorAll('.ts').forEach(s=>obs.observe(s));
+
+// ─────────────────────────────────────────
+// ACTIVE NAV
+// ─────────────────────────────────────────
+const nls=document.querySelectorAll('.nl');
+const navObs=new IntersectionObserver(entries=>
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id;
+      nls.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id));
+    }
+  }),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('.ts').forEach(s=>navObs.observe(s));
+
+renderQuizzes();
+</script>
+</body>
+</html>
