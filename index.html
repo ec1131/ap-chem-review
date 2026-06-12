@@ -425,6 +425,70 @@ footer strong{color:var(--accent)}
 
 <script>
 // ─────────────────────────────────────────
+// LAB EQUIPMENT SVGs
+// ─────────────────────────────────────────
+// Graduated cylinder: 25 mL, y(mL)=270-mL*9.6, meniscus bottom=17.3mL→y=104, walls→y=97
+const svgGradCyl = `<div style="text-align:center;margin:12px 0">
+<svg width="130" height="300" viewBox="0 0 130 300" style="max-width:130px">
+  <text x="65" y="14" text-anchor="middle" font-size="11" fill="#4de8c2" font-family="sans-serif">25 mL Graduated Cylinder</text>
+  <rect x="42" y="22" width="46" height="248" rx="2" fill="rgba(77,232,194,0.06)" stroke="#4de8c2" stroke-width="1.5"/>
+  <path d="M42,270 Q65,281 88,270" fill="rgba(77,232,194,0.06)" stroke="#4de8c2" stroke-width="1.5"/>
+  <path d="M42,270 L42,97 Q65,104 88,97 L88,270 Q65,281 42,270 Z" fill="rgba(56,189,248,0.2)"/>
+  <path d="M42,97 Q65,104 88,97" fill="none" stroke="rgba(56,189,248,0.9)" stroke-width="2"/>
+  <line x1="36" y1="104" x2="92" y2="104" stroke="#f7c948" stroke-width="0.8" stroke-dasharray="2,3" opacity="0.6"/>
+  ${[0,5,10,15,20,25].map(ml=>{
+    const y=Math.round(270-ml*9.6);
+    return `<line x1='42' y1='${y}' x2='60' y2='${y}' stroke='#7a9090' stroke-width='1.5'/><text x='38' y='${y+4}' text-anchor='end' font-size='10' fill='#7a9090' font-family='sans-serif'>${ml}</text>`;
+  }).join('')}
+  ${[1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,21,22,23,24].map(ml=>{
+    const y=Math.round(270-ml*9.6);
+    return `<line x1='42' y1='${y}' x2='52' y2='${y}' stroke='#7a9090' stroke-width='0.8'/>`;
+  }).join('')}
+</svg>
+<p style="font-size:0.78rem;color:#7a9090;margin-top:4px">Read the bottom of the meniscus.</p></div>`;
+
+// Burette zoomed 21-26 mL, y(mL)=30+(mL-21)*48, 1mL ticks→48px apart
+// meniscus bottom=23.4mL→y=145, walls→y=142
+const svgBurette = `<div style="text-align:center;margin:12px 0">
+<svg width="130" height="300" viewBox="0 0 130 300" style="max-width:130px">
+  <text x="65" y="14" text-anchor="middle" font-size="11" fill="#4de8c2" font-family="sans-serif">Burette (zoomed view)</text>
+  <rect x="55" y="28" width="20" height="242" rx="1" fill="rgba(77,232,194,0.06)" stroke="#4de8c2" stroke-width="1.5"/>
+  <path d="M55,28 L55,145 Q65,148 75,145 L75,28 Z" fill="rgba(56,189,248,0.2)"/>
+  <path d="M55,145 Q65,148 75,145" fill="none" stroke="rgba(56,189,248,0.9)" stroke-width="2"/>
+  <line x1="46" y1="148" x2="55" y2="148" stroke="#f7c948" stroke-width="0.8" stroke-dasharray="2,3" opacity="0.6"/>
+  ${[21,22,23,24,25,26].map(ml=>{
+    const y=Math.round(30+(ml-21)*48);
+    return `<line x1='55' y1='${y}' x2='75' y2='${y}' stroke='#7a9090' stroke-width='1.5'/><text x='79' y='${y+4}' font-size='10' fill='#7a9090' font-family='sans-serif'>${ml}</text>`;
+  }).join('')}
+  ${[21.1,21.2,21.3,21.4,21.5,21.6,21.7,21.8,21.9,22.1,22.2,22.3,22.4,22.5,22.6,22.7,22.8,22.9,23.1,23.2,23.3,23.4,23.5,23.6,23.7,23.8,23.9,24.1,24.2,24.3,24.4,24.5,24.6,24.7,24.8,24.9,25.1,25.2,25.3,25.4,25.5,25.6,25.7,25.8,25.9].map(ml=>{
+    const y=Math.round(30+(ml-21)*48);
+    const isMid=Math.round(ml*10)%5===0;
+    return `<line x1='55' y1='${y}' x2='${isMid?70:65}' y2='${y}' stroke='#7a9090' stroke-width='0.8'/>`;
+  }).join('')}
+</svg>
+<p style="font-size:0.78rem;color:#7a9090;margin-top:4px">0 is at top. Major ticks = 1 mL. Minor ticks = 0.1 mL. Estimate one digit beyond.</p></div>`;
+
+// Thermometer: 0-100°C, y(t)=244-t*2.2, mercury top=45°C→y=145
+const svgThermo = `<div style="text-align:center;margin:12px 0">
+<svg width="100" height="300" viewBox="0 0 100 300" style="max-width:100px">
+  <text x="50" y="14" text-anchor="middle" font-size="11" fill="#4de8c2" font-family="sans-serif">Thermometer (°C)</text>
+  <rect x="44" y="22" width="12" height="222" rx="6" fill="rgba(77,232,194,0.06)" stroke="#4de8c2" stroke-width="1.5"/>
+  <circle cx="50" cy="257" r="14" fill="rgba(226,92,122,0.25)" stroke="#e25c7a" stroke-width="1.5"/>
+  <rect x="47" y="145" width="6" height="100" fill="rgba(226,92,122,0.65)"/>
+  <circle cx="50" cy="257" r="10" fill="rgba(226,92,122,0.75)"/>
+  <line x1="44" y1="145" x2="62" y2="145" stroke="#f7c948" stroke-width="0.8" stroke-dasharray="2,3" opacity="0.6"/>
+  ${[0,10,20,30,40,50,60,70,80,90,100].map(t=>{
+    const y=Math.round(244-t*2.2);
+    return `<line x1='44' y1='${y}' x2='56' y2='${y}' stroke='#7a9090' stroke-width='1.5'/><text x='40' y='${y+4}' text-anchor='end' font-size='9' fill='#7a9090' font-family='sans-serif'>${t}</text>`;
+  }).join('')}
+  ${[5,15,25,35,45,55,65,75,85,95].map(t=>{
+    const y=Math.round(244-t*2.2);
+    return `<line x1='44' y1='${y}' x2='53' y2='${y}' stroke='#7a9090' stroke-width='0.8'/>`;
+  }).join('')}
+</svg>
+<p style="font-size:0.78rem;color:#7a9090;margin-top:4px">Estimate between the smallest markings.</p></div>`;
+
+// ─────────────────────────────────────────
 // QUESTION DATA
 // ─────────────────────────────────────────
 const QUIZZES = {
@@ -433,7 +497,10 @@ const QUIZZES = {
     {q:"Round 130,210 m to 3 significant figures.",cs:["130,000 m","130,200 m","1.30 × 10⁵ m","131,000 m"],a:2,e:"1.30 × 10⁵ keeps exactly 3 sig figs. 130,000 is ambiguous, so scientific notation is clearest."},
     {q:"How many sig figs are in 1,000. m (with decimal point)?",cs:["1","2","3","4"],a:3,e:"The written decimal point indicates all four digits are significant: 1, 0, 0, 0."},
     {q:"Calculate 97.34 mL − 34.1 mL with correct sig figs.",cs:["63.24 mL","63.2 mL","63 mL","63.240 mL"],a:1,e:"Subtraction uses decimal places: 34.1 has 1 decimal place, so the answer rounds to 1 decimal place → 63.2 mL."},
-    {q:"Calculate 4008 ÷ 2.763 with correct sig figs.",cs:["1451","1451.0","1450","1.45 × 10³"],a:3,e:"Division uses least sig figs: 2.763 has 4, 4008 has 4 → 4 sig figs → 1451. Both A and D are correct; scientific notation is unambiguous."}
+    {q:"Calculate 4008 ÷ 2.763 with correct sig figs.",cs:["1451","1451.0","1450","1.45 × 10³"],a:3,e:"Division uses least sig figs: 2.763 has 4, 4008 has 4 → 4 sig figs → 1451. Both A and D are correct; scientific notation is unambiguous."},
+    {q:svgGradCyl+"What is the correct reading from this graduated cylinder?",cs:["17 mL","17.3 mL","17.30 mL","7.3 mL"],a:1,e:"Read from the bottom of the meniscus. The liquid is between the 17 and 18 mL marks, about 3/10 of the way up → 17.3 mL. A 25 mL cylinder with 1 mL divisions is read to 0.1 mL (3 sig figs)."},
+    {q:svgBurette+"What is the correct reading from this burette?",cs:["23.4 mL","23 mL","23.45 mL","23.5 mL"],a:2,e:"The smallest tick marks are every 0.1 mL. You know the reading is 23.4 mL for certain, then estimate one digit beyond → 23.45 mL. Remember: burettes read top-to-bottom, so 0 is at the top."},
+    {q:svgThermo+"What is the correct reading from this thermometer?",cs:["45°C","45.0°C","40°C","50°C"],a:1,e:"The smallest tick marks are every 5°C. You know the temperature is on the 45°C mark for certain, then estimate one digit beyond → 45.0°C. The estimated zero shows the mercury is exactly on the mark, not between marks."}
   ],
   q2:[
     {q:"How many milliliters are in 1 liter?",cs:["10 mL","100 mL","1,000 mL","10,000 mL"],a:2,e:"The prefix milli- means 10⁻³, so 1 L = 1,000 mL."},
