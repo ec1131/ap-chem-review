@@ -178,8 +178,8 @@ footer strong{color:var(--accent)}
     <a class="nl" href="#s3">Matter</a>
     <a class="nl" href="#s4">Atomic</a>
     <a class="nl" href="#s5">Periodic</a>
-    <a class="nl" href="#s6">Nomenclature</a>
     <a class="nl" href="#s7">Bonding</a>
+    <a class="nl" href="#s10">IMFs</a>
     <a class="nl" href="#s8">Reactions</a>
     <a class="nl" href="#s9">Stoichiometry</a>
   </div>
@@ -313,47 +313,15 @@ footer strong{color:var(--accent)}
 </section>
 
 <!-- ═══════════════════════════════════════
-     S6 — NOMENCLATURE
-═══════════════════════════════════════ -->
-<section class="ts" id="s6">
-  <div class="sh"><span class="sn">06</span><h2 class="stitle">Nomenclature</h2></div>
-
-  <div class="vgrid">
-    <div class="vcard">
-      <div class="vlabel">&#127909; Naming Ionic Compounds</div>
-      <div class="vembed"><iframe src="https://www.youtube.com/embed/TQKIbJIqLeA" allowfullscreen loading="lazy"></iframe></div>
-    </div>
-    <div class="vcard">
-      <div class="vlabel">&#127909; Naming Covalent Compounds</div>
-      <div class="vembed"><iframe src="https://www.youtube.com/embed/DejkvR4pvRw" allowfullscreen loading="lazy"></iframe></div>
-    </div>
-    <div class="vcard">
-      <div class="vlabel">&#127909; Naming Acids</div>
-      <div class="vembed"><iframe src="https://www.youtube.com/embed/5Jb2u9ihfm4" allowfullscreen loading="lazy"></iframe></div>
-    </div>
-  </div>
-
-
-  <div class="quiz-block">
-    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your nomenclature knowledge</span></div>
-    <div class="quiz-body" id="q6"></div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     S7 — BONDING
+     S7 — TYPES OF BONDS
 ═══════════════════════════════════════ -->
 <section class="ts" id="s7">
-  <div class="sh"><span class="sn">07</span><h2 class="stitle">Chemical Bonding &amp; Intermolecular Forces</h2></div>
+  <div class="sh"><span class="sn">06</span><h2 class="stitle">Types of Chemical Bonds</h2></div>
 
   <div class="vgrid">
     <div class="vcard">
       <div class="vlabel">&#127909; Ionic vs. Covalent Bonding</div>
       <div class="vembed"><iframe src="https://www.youtube.com/embed/S_k0kr2eZSQ" allowfullscreen loading="lazy"></iframe></div>
-    </div>
-    <div class="vcard">
-      <div class="vlabel">&#127909; Intermolecular Forces</div>
-      <div class="vembed"><iframe src="https://www.youtube.com/embed/oXzmCC64974" allowfullscreen loading="lazy"></iframe></div>
     </div>
     <div class="vcard">
       <div class="vlabel">&#127909; Metallic Bonding &amp; Alloys (Interstitial vs. Substitutional)</div>
@@ -365,6 +333,26 @@ footer strong{color:var(--accent)}
   <div class="quiz-block">
     <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your bonding knowledge</span></div>
     <div class="quiz-body" id="q7"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S10 — INTERMOLECULAR FORCES
+═══════════════════════════════════════ -->
+<section class="ts" id="s10">
+  <div class="sh"><span class="sn">07</span><h2 class="stitle">Intermolecular Forces</h2></div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vlabel">&#127909; Intermolecular Forces</div>
+      <div class="vembed"><iframe src="https://www.youtube.com/embed/oXzmCC64974" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-label">&#127381; Quiz</span><span class="quiz-title">Test your IMF knowledge</span></div>
+    <div class="quiz-body" id="q10"></div>
   </div>
 </section>
 
@@ -492,6 +480,51 @@ const svgThermo = `<div style="text-align:center;margin:12px 0">
 </svg>
 <p style="font-size:0.78rem;color:#7a9090;margin-top:4px">Estimate between the smallest markings.</p></div>`;
 
+// Substitutional alloy: similar-size Metal B atoms replace Metal A lattice positions
+const svgSubAlloy = `<div style="text-align:center;margin:12px 0">
+<svg width="240" height="236" viewBox="0 0 240 236" style="max-width:240px">
+  <text x="120" y="16" text-anchor="middle" font-size="11" fill="#4de8c2" font-family="sans-serif">Particle Diagram of an Alloy</text>
+  ${(()=>{const sub=['0,3','1,1','2,4','3,2'];let out='';for(let r=0;r<4;r++){for(let c=0;c<5;c++){const x=32+c*44,y=48+r*44;const isB=sub.includes(r+','+c);out+=`<circle cx='${x}' cy='${y}' r='20' fill='${isB?"rgba(247,201,72,0.5)":"rgba(56,189,248,0.3)"}' stroke='${isB?"#f7c948":"#38bdf8"}' stroke-width='1.5'/>`;}}return out;})()}
+  <circle cx="50" cy="222" r="8" fill="rgba(56,189,248,0.3)" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="63" y="226" font-size="10" fill="#7a9090" font-family="sans-serif">Metal A</text>
+  <circle cx="135" cy="222" r="8" fill="rgba(247,201,72,0.5)" stroke="#f7c948" stroke-width="1.5"/>
+  <text x="148" y="226" font-size="10" fill="#7a9090" font-family="sans-serif">Metal B</text>
+</svg></div>`;
+
+// Interstitial alloy: small Metal B atoms sit in gaps between large Metal A atoms
+const svgIntAlloy = `<div style="text-align:center;margin:12px 0">
+<svg width="240" height="236" viewBox="0 0 240 236" style="max-width:240px">
+  <text x="120" y="16" text-anchor="middle" font-size="11" fill="#4de8c2" font-family="sans-serif">Particle Diagram of an Alloy</text>
+  ${(()=>{let out='';for(let r=0;r<4;r++){for(let c=0;c<5;c++){const x=32+c*44,y=48+r*44;out+=`<circle cx='${x}' cy='${y}' r='20' fill='rgba(56,189,248,0.3)' stroke='#38bdf8' stroke-width='1.5'/>`;}}const gaps=[[54,70],[142,70],[98,114],[186,114],[54,158],[142,158]];gaps.forEach(g=>{out+=`<circle cx='${g[0]}' cy='${g[1]}' r='7' fill='rgba(226,92,122,0.65)' stroke='#e25c7a' stroke-width='1.5'/>`;});return out;})()}
+  <circle cx="50" cy="222" r="8" fill="rgba(56,189,248,0.3)" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="63" y="226" font-size="10" fill="#7a9090" font-family="sans-serif">Metal A</text>
+  <circle cx="135" cy="222" r="5" fill="rgba(226,92,122,0.65)" stroke="#e25c7a" stroke-width="1.5"/>
+  <text x="148" y="226" font-size="10" fill="#7a9090" font-family="sans-serif">Metal B</text>
+</svg></div>`;
+
+// Mass spectrum bar graph generator: peaks = [[mass, %abundance], ...]
+function massSpec(peaks, mLow, mHigh){
+  const x=m=>50+(m-mLow+0.5)*(210/(mHigh-mLow+1));
+  const y=v=>180-v*1.5;
+  let bars='';
+  peaks.forEach(p=>{bars+=`<rect x='${x(p[0])-5}' y='${y(p[1])}' width='10' height='${p[1]*1.5}' fill='rgba(56,189,248,0.55)' stroke='#38bdf8' stroke-width='1'/><text x='${x(p[0])}' y='${y(p[1])-5}' text-anchor='middle' font-size='9' fill='#f7c948' font-family='sans-serif'>${p[1]}%</text>`;});
+  let xlabels='';
+  for(let m=mLow;m<=mHigh;m++){xlabels+=`<line x1='${x(m)}' y1='180' x2='${x(m)}' y2='184' stroke='#7a9090' stroke-width='1'/><text x='${x(m)}' y='196' text-anchor='middle' font-size='9' fill='#7a9090' font-family='sans-serif'>${m}</text>`;}
+  let ylabels='';
+  [0,25,50,75,100].forEach(v=>{ylabels+=`<line x1='46' y1='${y(v)}' x2='50' y2='${y(v)}' stroke='#7a9090' stroke-width='1'/><text x='42' y='${y(v)+3}' text-anchor='end' font-size='8' fill='#7a9090' font-family='sans-serif'>${v}</text>`;});
+  return `<div style="text-align:center;margin:12px 0">
+<svg width="280" height="232" viewBox="0 0 280 232" style="max-width:280px">
+  <text x="155" y="16" text-anchor="middle" font-size="11" fill="#4de8c2" font-family="sans-serif">Mass Spectrum of a Pure Element</text>
+  <line x1="50" y1="180" x2="262" y2="180" stroke="#7a9090" stroke-width="1.5"/>
+  <line x1="50" y1="180" x2="50" y2="28" stroke="#7a9090" stroke-width="1.5"/>
+  ${bars}${xlabels}${ylabels}
+  <text x="155" y="214" text-anchor="middle" font-size="10" fill="#7a9090" font-family="sans-serif">Mass (amu)</text>
+  <text x="14" y="110" text-anchor="middle" font-size="10" fill="#7a9090" font-family="sans-serif" transform="rotate(-90 14 110)">Relative abundance (%)</text>
+</svg></div>`;
+}
+const svgSpecMg = massSpec([[24,79],[25,10],[26,11]], 23, 27);
+const svgSpecCl = massSpec([[35,76],[37,24]], 34, 38);
+
 // ─────────────────────────────────────────
 // QUESTION DATA
 // ─────────────────────────────────────────
@@ -525,7 +558,9 @@ const QUIZZES = {
     {q:"The element ¹¹²Cd has how many neutrons?",cs:["48","64","112","50"],a:1,e:"Mass number (112) − atomic number (48 for Cd) = 64 neutrons."},
     {q:"The electron configuration [Ne] 3s² 3p⁴ belongs to which element?",cs:["Si","P","S","Cl"],a:2,e:"[Ne]=10e⁻, + 3s²(2) + 3p⁴(4) = 16 total → Sulfur (S, atomic number 16)."},
     {q:"Which model of the atom is considered most accurate today?",cs:["Dalton's solid sphere","Thomson's plum pudding","Bohr's planetary model","Electron cloud (quantum) model"],a:3,e:"The quantum mechanical model (electron cloud) is most accurate — it describes electrons as probability distributions, not fixed orbits."},
-    {q:"The ion ²⁶Mg²⁺ has how many electrons?",cs:["26","14","12","10"],a:3,e:"Mg has 12 electrons. A 2+ charge means it lost 2 electrons → 12 − 2 = 10 electrons."}
+    {q:"The ion ²⁶Mg²⁺ has how many electrons?",cs:["26","14","12","10"],a:3,e:"Mg has 12 electrons. A 2+ charge means it lost 2 electrons → 12 − 2 = 10 electrons."},
+    {q:svgSpecMg+"Based on this mass spectrum, the average atomic mass of the element is closest to:",cs:["24.0 amu","24.3 amu","25.0 amu","79 amu"],a:1,e:"Weighted average: (24)(0.79) + (25)(0.10) + (26)(0.11) ≈ 24.3 amu. Most atoms have mass 24, so the average sits just above 24 — this is magnesium. (79 is a percent abundance, not a mass!)"},
+    {q:svgSpecCl+"Which statement is best supported by this mass spectrum?",cs:["The element has two isotopes, and its average atomic mass is closer to 35 amu than to 37 amu","The element has two isotopes, and its average atomic mass is exactly 36 amu","All atoms of this element have a mass of 35 amu","The sample must contain two different elements"],a:0,e:"Two peaks = two isotopes of ONE element (same protons, different neutrons). The mass-35 peak is much taller (76%), so the weighted average is pulled toward 35: (35)(0.76) + (37)(0.24) ≈ 35.5 amu — this is chlorine."}
   ],
   q5:[
     {q:"As you move left to right across a period, atomic radius generally:",cs:["Increases","Decreases","Stays the same","First increases then decreases"],a:1,e:"More protons pull electrons closer to the nucleus → radius decreases across a period."},
@@ -534,19 +569,21 @@ const QUIZZES = {
     {q:"Group 1 metals (alkali metals) are the most reactive metals because they:",cs:["Have 2 valence electrons","Have 1 valence electron that is easily lost","Have full outer shells","Are transition metals"],a:1,e:"One valence electron far from the nucleus is easily lost, making alkali metals highly reactive."},
     {q:"Rank these elements by INCREASING atomic radius: C, Al, O, K",cs:["O < C < Al < K","K < Al < C < O","C < O < Al < K","O < Al < C < K"],a:0,e:"O < C (same period, O has more protons) < Al (next period down) < K (two periods down, much larger)."}
   ],
-  q6:[
-    {q:"What is the correct name for MnCl₂?",cs:["Manganese chloride","Manganese(II) chloride","Manganese(IV) chloride","Dimanganese chloride"],a:1,e:"Mn can have multiple oxidation states. Cl⁻ = −1, and two Cl = −2 total, so Mn = +2 → Manganese(II) chloride."},
-    {q:"What is the formula for Lead(IV) hydroxide?",cs:["PbOH","Pb(OH)₂","Pb(OH)₄","PbOH₄"],a:2,e:"Lead(IV) = Pb⁴⁺. Hydroxide = OH⁻. Need 4 OH⁻ to balance Pb⁴⁺ → Pb(OH)₄."},
-    {q:"What is the correct name for N₂O₅?",cs:["Nitrogen oxide","Nitrogen pentoxide","Dinitrogen pentoxide","Dinitrogen oxide"],a:2,e:"Covalent compounds use Greek prefixes. di- for 2 N, pent- for 5 O, -oxide → dinitrogen pentoxide."},
-    {q:"What is the name of HNO₃?",cs:["Nitrous acid","Hydrogen nitrate","Nitric acid","Hydronitric acid"],a:2,e:"HNO₃ is a strong acid named nitric acid. HNO₂ would be nitrous acid."},
-    {q:"What is the formula for carbonic acid?",cs:["HCO₃","H₂CO₃","H₂CO","HC₂O₃"],a:1,e:"Carbonic acid = H₂CO₃. The carbonate ion is CO₃²⁻; adding 2 H⁺ gives H₂CO₃."}
-  ],
   q7:[
     {q:"What type of bond forms between calcium and chlorine?",cs:["Metallic bond","Nonpolar covalent","Polar covalent","Ionic bond"],a:3,e:"Ca is a metal and Cl is a nonmetal with large electronegativity difference → ionic bond (electron transfer)."},
     {q:"What type of bond forms between chlorine and bromine (Cl₂ and Br₂ are similar)?",cs:["Ionic","Polar covalent","Nonpolar covalent","Metallic"],a:2,e:"Two nonmetals with the same electronegativity → nonpolar covalent bond (electrons shared equally)."},
+    {q:"A sample of solid iron (Fe) conducts electricity and is malleable. What type of bonding holds its atoms together?",cs:["Ionic","Polar covalent","Metallic","Network covalent"],a:2,e:"Iron is a transition metal. Metal atoms (especially transition metals) bond through a 'sea' of delocalized valence electrons → metallic bonding. The mobile electrons explain why metals conduct electricity and are malleable."},
+    {q:svgSubAlloy+"Which type of alloy is shown in this particle diagram?",cs:["Interstitial alloy","Substitutional alloy","Ionic compound","Covalent network solid"],a:1,e:"The Metal B atoms are about the SAME SIZE as Metal A and take the place of (substitute for) Metal A atoms in the lattice → substitutional alloy. Example: brass, where zinc atoms replace copper atoms."},
+    {q:svgIntAlloy+"Which type of alloy is shown in this particle diagram?",cs:["Substitutional alloy","Ionic compound","Pure metallic crystal","Interstitial alloy"],a:3,e:"The much smaller Metal B atoms fit into the spaces (interstices) BETWEEN the larger metal atoms → interstitial alloy. Example: steel, where small carbon atoms sit between iron atoms."},
+    {q:"MgBr₂ is best described as having which type of bonding?",cs:["Nonpolar covalent","Polar covalent","Ionic","Metallic"],a:2,e:"Mg is a metal (+2) and Br is a nonmetal (−1). The large electronegativity difference → ionic bond."}
+  ],
+  q10:[
     {q:"What is the strongest intermolecular force in water (H₂O)?",cs:["London dispersion","Dipole-dipole","Hydrogen bonding","Ionic bonding"],a:2,e:"Water has O–H bonds and lone pairs → qualifies for hydrogen bonding, the strongest IMF listed (not a true bond)."},
     {q:"What is the strongest IMF in methane (CH₄)?",cs:["Hydrogen bonding","Dipole-dipole","London dispersion forces","Covalent bonding"],a:2,e:"CH₄ is nonpolar and has no O/N/F–H bonds → only London dispersion forces (temporary induced dipoles)."},
-    {q:"MgBr₂ is best described as having which type of bonding?",cs:["Nonpolar covalent","Polar covalent","Ionic","Metallic"],a:2,e:"Mg is a metal (+2) and Br is a nonmetal (−1). The large electronegativity difference → ionic bond."}
+    {q:"London dispersion forces exist between ALL molecules, even nonpolar ones. Where do they come from?",cs:["Transfer of electrons between molecules","Random electron motion creates a temporary (instantaneous) dipole, which induces a dipole in a neighboring molecule","Permanent positive and negative ions attracting each other","Sharing of electrons between molecules"],a:1,e:"Electrons are constantly moving. At any instant they can pile up on one side of a molecule, creating a temporary dipole. That dipole distorts the electron cloud of a neighbor (induces a dipole), and the two attract. This happens in ALL molecules."},
+    {q:"Why do polar molecules like HCl experience dipole-dipole attractions?",cs:["They transfer electrons to each other","Unequal sharing of electrons gives each molecule permanent partial charges (δ+ and δ−), and opposite partial charges on neighboring molecules attract","Their electrons stop moving","They form covalent bonds with each other"],a:1,e:"Cl is more electronegative than H, so it pulls the shared electrons closer → permanent δ− on Cl and δ+ on H. The δ+ end of one HCl attracts the δ− end of another. The attraction comes from the PERMANENT dipole, unlike the temporary dipoles of LDFs."},
+    {q:"Why is hydrogen bonding so much stronger than ordinary dipole-dipole attraction?",cs:["It is a true covalent bond between molecules","Hydrogen transfers its electron completely","When H is bonded to N, O, or F, the electronegative atom pulls electron density away, leaving the H almost a bare proton with a large δ+ that strongly attracts a lone pair on N/O/F of a neighboring molecule","Hydrogen is the heaviest atom involved"],a:2,e:"N, O, and F are small and highly electronegative. They strip electron density from H, leaving an intensely concentrated δ+ (almost a bare proton). That δ+ interacts strongly with a lone pair on the N/O/F of another molecule. It's still an attraction BETWEEN molecules — not a true bond."},
+    {q:"Br₂ has a higher boiling point than F₂, yet both are nonpolar. Why?",cs:["Br₂ has hydrogen bonding","Br₂ has dipole-dipole forces","Br₂ has more electrons, so its electron cloud is more polarizable → stronger London dispersion forces","F₂ forms ionic bonds"],a:2,e:"More electrons in a bigger, floppier electron cloud are easier to distort (more polarizable) → bigger temporary dipoles → stronger LDFs → more energy needed to separate the molecules → higher boiling point."}
   ],
   q8:[
     {q:"What type of reaction is: CaCO₃ → CaO + CO₂?",cs:["Synthesis","Decomposition","Single replacement","Combustion"],a:1,e:"One compound breaks into two simpler substances → decomposition reaction."},
